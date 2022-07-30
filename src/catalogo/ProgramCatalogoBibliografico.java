@@ -4,18 +4,21 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.io.FileUtils;
 
 public class ProgramCatalogoBibliografico {
 	
 	private static void writeFile(String item) throws IOException{
 		File file = new File("src/catalogo/dati.txt");
-		FileUtils.writeStringToFile(file,item, "UTF-8",true);
+		FileUtils.writeStringToFile(file,item, "UTF-8",false);
 	}
 	
 	private static void readFile() throws IOException{
 		File file = new File("src/catalogo/dati.txt");
 		String readString = FileUtils.readFileToString(file, "UTF-8");
+		System.out.println("Dati scaricato dal text file" );
 		System.out.println(readString);
 	}
 	
@@ -75,21 +78,16 @@ public class ProgramCatalogoBibliografico {
 			System.out.println("Ricerca per codice 547");
 			elementi.stream()
 			.filter(p -> p.getCodiceISBN() == 547) 
-			.forEach(System.out::println);
-
-			
-			//salvataggio dal disco dell'archivio
-			for (Items item: elementi) {
-				
+			.forEach( e-> {
 				try {
-					writeFile(item.toString());
-				} catch (IOException e) {
+					writeFile(e.toString());
+				} catch (IOException e1) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					e1.printStackTrace();
 				}
-			}
-		
-			
+			});
+
+
 			//Caricamento dal disco dell'archivio
 		try {
 			readFile();
