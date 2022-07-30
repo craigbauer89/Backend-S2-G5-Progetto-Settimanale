@@ -3,8 +3,10 @@ package catalogo;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
 
@@ -23,16 +25,25 @@ public class ProgramCatalogoBibliografico {
 	}
 	
 	public static void main(String[] args) {
-		
-//			List<Libro> elementi = Arrays.asList(
+//		
+//			List<Items> elementi2 = Arrays.asList(
 //			new Libro(123, "Arturo La Grande", 2022, 789, "Marco Rossi", "Crimi"),
 //			new Libro(124, "A Wonderful life", 2022, 560, "Marco Rossi", "Love"),
-//			new Libro(125, "La Bella Vita", 2008, 200, "Jane Verdi", "Drama")
+//			new Libro(125, "La Bella Vita", 2008, 200, "Jane Verdi", "Drama"),
 //			new Rivista(546, "Mens Health",  2022, 15, Period.MENSILE),
 //			new Rivista(547, "Hello",  2022, 22, Period.MENSILE),
 //			new Rivista(548, "Vogue",  2021, 29, Period.MENSILE),
-//			new Rivista(549, "A Magazine",  2021, 29, Period.MENSILE)
+//			new Rivista(549, "A Magazine",  2021, 29, Period.MENSILE));
+//		
+//		Stream<Object> aggiungeItem = elementi2.stream() 
+//		.map(x -> "Numero: " +  x); 
+//		elementi2.add(new Libro(122, "Amazing Places", 1996, 430, "Tim Lovejoy", "Action"));
+//		
 //
+//		aggiungeItem.forEach(System.out::println);
+		
+		
+		
 		List<Items> elementi = new ArrayList<>();
 		
 			//aggiunte di un elemento
@@ -63,6 +74,7 @@ public class ProgramCatalogoBibliografico {
 			elementi.stream()
 			.filter(p -> p instanceof Libro) 
 			.filter(p -> ((Libro) p).getAutore().startsWith("Marco"))
+			.map(item -> item.getTitolo() + " -> Numero di Pagine: " + item.getNumeroPagine())
 			.forEach(System.out::println);
 			System.out.println("Ricerca per autore con nome Marco Bruno");
 			elementi.stream()
