@@ -90,6 +90,10 @@ public class ProgramCatalogoBibliografico {
 			System.out.println("Ricerca per codice 547");
 			elementi.stream()
 			.filter(p -> p.getCodiceISBN() == 547) 
+			.forEach(System.out::println);
+			System.out.println("Ricerca per codice 547 e salvarlo in disco dell'archivio, e dopo caricato dal disco dell'archivio");
+			elementi.stream()
+			.filter(p -> p.getCodiceISBN() == 547) 
 			.forEach( e-> {
 				try {
 					writeFile(e.toString());
